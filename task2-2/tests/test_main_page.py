@@ -70,7 +70,6 @@ def test_game_platform_filter(
         alias: str
     ) -> None:
     for i in range(10):
-        # TODO: change time on webdriverwait
         page.select_platform(platform)
         game_page = page.go_to_game(page.games[i])
         assert game_page.platform == alias
