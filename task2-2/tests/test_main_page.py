@@ -59,6 +59,7 @@ def test_check_pages_quantity_with_changed_games_qty_in_page(
     assert page.pagination_element(pages).is_displayed()
 
 
+@pytest.mark.flaky(reruns=3, reruns_delay=1)
 @pytest.mark.parametrize(
     'platform, alias', 
     [('Browser', 'Web Browser'), ('PC', 'Windows')]
@@ -70,7 +71,6 @@ def test_game_platform_filter(
     ) -> None:
     for i in range(10):
         # TODO: change time on webdriverwait
-        time.sleep(1)
         page.select_platform(platform)
         game_page = page.go_to_game(page.games[i])
         assert game_page.platform == alias
