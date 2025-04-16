@@ -1,7 +1,7 @@
 name: Avito Tests
 
 on:
-  push
+  workflow_dispatch:
 
 jobs:
   run:
