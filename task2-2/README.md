@@ -55,9 +55,19 @@
     ```
 
 ## Запуск тестов
+Перед запуском тестов убедитесь, что на вашем компьютере установлен **Google Chrome.** Если хотите, чтобы тесты проходили в фоновом режиме, установите `—headless` мод в настройках:
+```
+# conftest.py
 
-1. Запустите тесты из директории `tests/`:
+@pytest.fixture(scope='session')
+def options() -> Options:
+    chrome_options = Options()
+    chrome_options.add_argument('--headless')
+    return chrome_options
+```
 
-    ```jsx
-    pytest -s -v tests
-    ```
+Запустите тесты из директории `tests/`:
+
+```
+pytest -s -v tests
+```
