@@ -14,7 +14,7 @@ def service() -> Service:
 @pytest.fixture(scope='session')
 def options() -> Options:
     chrome_options = Options()
-    # add options
+    chrome_options.add_argument('--headless')
     return chrome_options
 
 
