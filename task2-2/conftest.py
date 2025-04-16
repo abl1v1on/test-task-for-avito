@@ -19,7 +19,7 @@ def options() -> Options:
 
 
 @pytest.fixture(scope='function')
-def browser(service: Service, options: Options) -> Generator[Chrome, None]:
+def browser(service: Service, options: Options) -> Generator[Chrome, None, None]:
     browser = Chrome(service=service, options=options)
     yield browser
     browser.quit()
