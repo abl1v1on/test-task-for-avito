@@ -71,3 +71,16 @@ def options() -> Options:
 ```
 pytest -s -v tests
 ```
+
+## Запуск тестов через GitHub Actions
+Для того, чтобы запустить тесты с помощью GitHub Actions перейдите на вкладку Actions, в списке в левой части экрана найдите "Avito Tests", нажмите на выпадающий список Run Workflow, а после на кнопку "Run Workflow". После этого перейдите во кладку "All workflows", выберите последний запуск и наблюдайте за процессом.
+
+![alt text](readme_assets/image.png)
+
+![alt text](readme_assets/image-1.png)
+
+![alt text](readme_assets/image-2.png)
+
+![alt text](readme_assets/image-3.png)
+
+![alt text](readme_assets/image-4.png)
