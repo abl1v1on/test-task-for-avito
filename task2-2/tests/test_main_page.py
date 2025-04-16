@@ -55,7 +55,6 @@ def test_check_pages_quantity_with_changed_games_qty_in_page(
         quantity: int, 
         pages: int
     ) -> None:
-    """TODO: need to fix"""
     page.select_elements_on_page(quantity)
     assert page.pagination_element(pages).is_displayed()
 
