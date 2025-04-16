@@ -17,6 +17,6 @@ jobs:
         uses: browser-actions/setup-chrome@v1
       - run: chrome --version
       - name: install deps
-        run: pip install -r requirements.txt
+        run: pip install -r task2-2/requirements.txt
       - name: run tests
-        run: pytest -s -v tests
+        run: pytest -s -v task2-2/tests
