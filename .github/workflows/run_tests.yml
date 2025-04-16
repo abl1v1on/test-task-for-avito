@@ -1,0 +1,22 @@
+name: Avito Tests
+
+on:
+  push
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v4
+      - name: install python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: install chrome
+        uses: browser-actions/setup-chrome@v1
+      - run: chrome --version
+      - name: install deps
+        run: pip install -r requirements.txt
+      - name: run tests
+        run: pytest -s -v tests
