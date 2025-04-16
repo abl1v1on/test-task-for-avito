@@ -31,7 +31,7 @@
 
     ```jsx
     git clone https://github.com/abl1v1on/test-task-for-avito.git
-    cd test-task-for-avito
+    cd test-task-for-avito/task2-2/
     ```
 
 ## Виртуальное окружение и установка зависимостей
