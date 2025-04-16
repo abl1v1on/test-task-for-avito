@@ -1,7 +1,10 @@
 from dataclasses import dataclass
+from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
-from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
 
 from pages.base_page import BasePage
 from pages.game_details_page import GameDetailsPage
@@ -11,7 +14,7 @@ from pages.game_details_page import GameDetailsPage
 class MainPageSelectors:
     FILTER_BY_PLATFORM = (
         By.XPATH, 
-        '//div[text()="Filter by platform"]/following-sibling::*[1]'
+        '//div[text()="Filter by platform"]/following-sibling::*[1]/div'
     )
     FILTER_BY_CATEGORY = (
         By.XPATH, 
@@ -41,12 +44,16 @@ class MainPage(BasePage):
 
     @property
     def filter_by_platform_select(self) -> WebElement:
-        return self.find(*MainPageSelectors.FILTER_BY_PLATFORM)
+        return WebDriverWait(self.browser, 5).until(
+            EC.element_to_be_clickable(MainPageSelectors.FILTER_BY_PLATFORM)
+        )
 
     @property
     def filter_by_category_select(self) -> WebElement:
-        return self.find(*MainPageSelectors.FILTER_BY_CATEGORY)
-    
+        return WebDriverWait(self.browser, 5).until(
+            EC.element_to_be_clickable(MainPageSelectors.FILTER_BY_CATEGORY)
+        )
+
     @property
     def sort_by_select(self) -> WebElement:
         return self.find(*MainPageSelectors.SORT_BY)
@@ -84,8 +91,10 @@ class MainPage(BasePage):
         Универсальный метод для выбора 
         любых элементов списка на странице
         """
-        return self.find(*MainPageSelectors.OPTION(value))
-    
+        return WebDriverWait(self.browser, 5).until(
+            EC.element_to_be_clickable(MainPageSelectors.OPTION(value))
+        )
+
     def pagination_element(self, page: int) -> WebElement:
         return self.find(*MainPageSelectors.PAGINATION_ELEMENT(page))
     
@@ -104,8 +113,14 @@ class MainPage(BasePage):
 
     def select_platform(self, value: str) -> None:
         """Выбор платформы"""
-        self.filter_by_platform_select.click()
-        self.option(value).click()
+        wait = WebDriverWait(self.browser, 5)
+
+        wait.until(
+            EC.element_to_be_clickable(MainPageSelectors.FILTER_BY_PLATFORM)
+        ).click()
+        wait.until(
+            EC.element_to_be_clickable(MainPageSelectors.OPTION(value))
+        ).click()
 
     def select_category(self, value: str) -> None:
         """Выбор категории"""
